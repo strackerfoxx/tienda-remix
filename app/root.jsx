@@ -1,3 +1,5 @@
+import {useState, useEffect} from 'react'
+
 const {
   Links,
   LiveReload,
@@ -63,9 +65,53 @@ export function links(){
 }
 
 export default function App() {
+
+  const carritoLS = typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('carrito')) ?? [] : null
+  const [carrito, setCarrito] = useState(carritoLS)
+  
+  useEffect(() => {
+    localStorage.setItem('carrito', JSON.stringify(carrito))
+  }, [carrito])
+
+  function carritoCompras(guitarra){
+      if(carrito.some(guitarraState => guitarraState.id === guitarra.id)){
+
+        const carritoActualizado = carrito.map(guitarraState => {
+          if(guitarraState.id === guitarra.id ){
+              guitarraState.cantidad = guitarra.cantidad
+          }
+          return guitarraState
+        })
+        setCarrito(carritoActualizado)
+      }else{
+        setCarrito([...carrito, guitarra])
+      }
+  }
+
+  function cantidadActualizada(guitarra){
+      const carritoActualizado = carrito.map(guitarraState => {
+        if(guitarraState.id === guitarra.id ){
+            guitarraState.cantidad = guitarra.cantidad
+        }
+        return guitarraState
+      })
+      setCarrito(carritoActualizado)
+  }
+
+  function eliminarProducto(id){
+    const carritoActualizado = carrito.filter( producto => producto.id != id )
+    setCarrito(carritoActualizado)
+  }
+
   return (
     <Document>
-        <Outlet/>
+        <Outlet
+        context={{
+          carrito,
+          carritoCompras, 
+          cantidadActualizada, 
+          eliminarProducto}}
+        />
     </Document>
   );
 }

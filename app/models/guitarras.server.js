@@ -3,7 +3,7 @@ export async function getGuitarras() {
     return await respuesta.json()
 }
 
-export async function getGuitarra(url) {
-    const respuesta = await fetch(`http://localhost:1337/api/guitarras?filters[url]=${url}&populate=imagen`);
+export async function getGuitarra(id) {
+    const respuesta = await fetch(`http://localhost:1337/api/guitarras?filters[id]=${id}&populate=imagen`);
     return await respuesta.json()
 }

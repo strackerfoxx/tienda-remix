@@ -1,4 +1,5 @@
 import {Link, useLocation} from '@remix-run/react'
+import imgCart from '~/../public/img/carrito.png'
 
 const Navegacion = () => {
     const Location = useLocation()
@@ -22,6 +23,7 @@ const Navegacion = () => {
         <Link to='/nosotros' className={`${locate === '/nosotros' && 'text-prime'}`} 
         >
         Nosotros</Link>
+        <Link to='/carrito' className='cart'><img src={imgCart} alt="imagen de un carrito de compras" /></Link>
         
     </nav>
   )

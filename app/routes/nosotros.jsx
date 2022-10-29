@@ -1,5 +1,6 @@
 import imagen from '../../public/img/nosotros.jpg'
 import styles from '~/styles/nosotros.css'
+import { useOutletContext } from '@remix-run/react';
 
 export const meta = () => ({
   title: "GuitarLA - Nosotros",
@@ -20,6 +21,10 @@ export function links() {
 }
 
 const Nosotros = () => {
+
+  const guitarla = useOutletContext()
+  console.log(guitarla)
+
   return (
     <main className="contenedor nosotros">
       <h2 className="heading">Nosotros</h2>

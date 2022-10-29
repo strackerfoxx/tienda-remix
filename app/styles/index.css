@@ -112,6 +112,7 @@
   }
   .footer .navegacion{
     display: flex;
+    align-items: center;
     flex-direction: column;
     align-items: center;
   }
@@ -129,6 +130,10 @@
     text-decoration: none;
   }
 
+  .footer .navegacion a:last-of-type {
+    display: none;
+  }
+
   .footer .navegacion .text-prime{
     color: var(--primary)
   }
@@ -137,4 +142,8 @@
   }
   .footer .navegacion a:hover {
     color: var(--primary);
+  }
+
+  .cart{
+    width: 4rem;
   }
